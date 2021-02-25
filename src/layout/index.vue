@@ -32,6 +32,7 @@
 </template>
 <script>
 import SideBar from "./components/sideBar";
+import { mapMutations } from 'vuex';
 export default {
   name: "layout",
   components: {
@@ -44,8 +45,12 @@ export default {
     };
   },
   methods: {
+    ...mapMutations('app', {
+      clearToken: 'CLEAR_TOKEN'
+    }),
     userCenter () { },
     loginOut () {
+      this.clearToken()
       this.$router.push('/login')
     }
   },

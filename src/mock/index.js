@@ -1,7 +1,10 @@
 import Mock from 'mockjs'
 
 Mock.mock('/login', (req, res) => {
-    return {
-        msg: 'success'
-    }
+  return {
+    msg: 'success',
+    data: {
+      auth: 'admin',
+    },
+  }
 })

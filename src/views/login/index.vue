@@ -98,18 +98,23 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("console", {
-      generateRouter: "GENERATE_ROUTER",
+    // ...mapMutations("console", {
+    //   generateRouter: "GENERATE_ROUTER",
+    // }),
+    ...mapMutations('app', {
+      setToken: "SET_TOKEN"
     }),
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           login()
             .then((res) => {
-
+              const { auth } = res.data.data
               // console.log(res)
-              this.generateRouter();
+              // this.generateRouter(); //生成路由
+              this.setToken(auth) //将token存入localStorage
               this.$router.push({ path: "/dashboard" });
+
             })
             .catch((err) => { });
         } else {

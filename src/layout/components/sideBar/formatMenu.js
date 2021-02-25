@@ -1,22 +1,22 @@
-import {
-    isEmpty,
-    isArray
-} from 'lodash'
+// import { cosh } from 'core-js/fn/number'
+import { isEmpty, isArray } from 'lodash'
 
-export function formatMenu(menus) {
-    for (let item of menus) {
-        if (!isArray(item.children) && !isEmpty(item.children)) {
-            formatMenu(item.children)
-        } else {
-            const {
-                icon,
-                title
-            } = item
-            return {
-                icon,
-                title
-            }
-
-        }
+export function formatMenu(data) {
+  const result = []
+  data.forEach((item) => {
+    const obj = {
+      icon: item.meta.icon,
+      title: item.meta.title,
+      path: item.path,
     }
+    if (item.children && item.children.length) {
+      result.push({
+        ...obj,
+        children: formatMenu(item.children),
+      })
+    } else {
+      result.push(obj)
+    }
+  })
+  return result
 }
