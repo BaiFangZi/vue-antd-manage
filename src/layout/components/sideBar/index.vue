@@ -63,16 +63,16 @@ export default {
   },
   created () {
     const routes = this.$router.options.routes
-    console.log(this.$route)
+    // console.log(this.$route)
     // console.log(routes)
     const menuRoutes = routes.find(r => r.path === '/layout').children
     // console.log(menuRoutes)
     this.menus = formatMenu(menuRoutes)
-    console.log(this.menus)
+    // console.log(this.menus)
   },
   methods: {
     handleSelect ({ key }) {
-      console.log(key)
+      // console.log(key)
       this.$router.push({ path: key })
     }
   },

@@ -5,38 +5,54 @@
       <side-bar></side-bar>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
-        <a-icon class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="() => (collapsed = !collapsed)" />
-        <span class="header-msg">
-          <!-- <a-icon class="user" type="user" /> -->
-          <a-dropdown class="avatar">
-            <a-menu slot="overlay">
-              <a-menu-item key="userCenter" @click="userCenter">个人中心</a-menu-item>
-              <a-menu-item key="layout" @click="loginOut">退出登陆</a-menu-item>
+      <a-layout-header class="header">
+        <div class="header-left">
+          <a-icon class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="() => (collapsed = !collapsed)" />
+          <bread-crumb></bread-crumb>
+        </div>
+        <div class="header-right">
+          <span class="header-msg">
+            <!-- <a-icon class="user" type="user" /> -->
+            <a-dropdown class="avatar">
+              <a-menu slot="overlay">
+                <a-menu-item key="userCenter" @click="userCenter">个人中心</a-menu-item>
+                <a-menu-item key="layout" @click="loginOut">退出登陆</a-menu-item>
 
-            </a-menu>
-            <a-button shape="circle" icon="user"></a-button>
-          </a-dropdown>
-        </span>
+              </a-menu>
+              <a-button shape="circle" icon="user"></a-button>
+            </a-dropdown>
+          </span>
+        </div>
       </a-layout-header>
-      <a-layout-content :style="{
+
+      <!-- <a-divider /> -->
+      <a-layout-content>
+        <div style="height:50px;background:#fff;border-top:1px solid #eee"></div>
+        <div :style="{
           margin: '24px 16px',
           padding: '24px',
           background: '#fff',
           minHeight: '280px',
+         height:'calc(100% - 98px)'
         }">
-        <router-view></router-view>
+          <router-view></router-view>
+        </div>
+
       </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
 <script>
 import SideBar from "./components/sideBar";
+import TabTags from './components/tabTags'
+import BreadCrumb from './components/breadcrumb'
 import { mapMutations } from 'vuex';
 export default {
   name: "layout",
   components: {
     SideBar,
+    TabTags,
+    BreadCrumb
   },
   data () {
     return {
@@ -59,6 +75,19 @@ export default {
 <style lang="scss">
 #screen {
   min-height: 100%;
+  .header {
+    background: rgb(255, 255, 255);
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+    // position: static;
+    // top: 0;
+  }
   .trigger,
   .user {
     font-size: 18px;
