@@ -7,6 +7,8 @@ import store from './store'
 import './assets/global.css'
 import './mock'
 import { replace } from 'lodash'
+
+import TableOperations from './components/TableOperations'
 Vue.config.productionTip = false
 
 Vue.use(AntD)
@@ -37,6 +39,7 @@ console.log(hasToken)
 //   }
 //   next()
 // })
+Vue.component('table-operations', TableOperations)
 
 new Vue({
   render: (h) => h(App),

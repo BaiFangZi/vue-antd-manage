@@ -1,29 +1,32 @@
 <template>
-  <a-table :columns="columns" :data-source="data" class="components-table-demo-nested">
-    <a slot="operation">Publish</a>
-    <a-table slot="expandedRowRender" :columns="innerColumns" :data-source="innerData" :pagination="false">
-      <span slot="status">
-        <a-badge status="success" />Finished
-      </span>
-      <span slot="operation" class="table-operation">
-        <a>Pause</a>
-        <a>Stop</a>
-        <a-dropdown>
-          <a-menu slot="overlay">
-            <a-menu-item>
-              Action 1
-            </a-menu-item>
-            <a-menu-item>
-              Action 2
-            </a-menu-item>
-          </a-menu>
-          <a> More
-            <a-icon type="down" />
-          </a>
-        </a-dropdown>
-      </span>
+  <div>
+    <table-operations @search="handleSearch"></table-operations>
+    <a-table :columns="columns" :data-source="data" class="components-table-demo-nested">
+      <a slot="operation">Publish</a>
+      <a-table slot="expandedRowRender" :columns="innerColumns" :data-source="innerData" :pagination="false">
+        <span slot="status">
+          <a-badge status="success" />Finished
+        </span>
+        <span slot="operation" class="table-operation">
+          <a>Pause</a>
+          <a>Stop</a>
+          <a-dropdown>
+            <a-menu slot="overlay">
+              <a-menu-item>
+                Action 1
+              </a-menu-item>
+              <a-menu-item>
+                Action 2
+              </a-menu-item>
+            </a-menu>
+            <a> More
+              <a-icon type="down" />
+            </a>
+          </a-dropdown>
+        </span>
+      </a-table>
     </a-table>
-  </a-table>
+  </div>
 </template>
 <script>
 const columns = [
@@ -73,6 +76,9 @@ for (let i = 0; i < 3; ++i) {
 }
 
 export default {
+  components: {
+
+  },
   data () {
     return {
       data,
@@ -81,5 +87,11 @@ export default {
       innerData,
     };
   },
+  methods: {
+    handleSearch (val) {
+      console.log(val)
+    }
+  }
+
 };
 </script>

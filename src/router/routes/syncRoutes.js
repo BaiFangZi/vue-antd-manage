@@ -7,7 +7,7 @@ export default [
       title: '根路由',
       icon: '',
       auth: ['admin', 'normal'],
-      isHidden: true,
+      // isHidden: true,
     },
   },
   {
@@ -18,7 +18,7 @@ export default [
       title: '登陆',
       icon: '',
       auth: ['admin', 'normal'],
-      isHidden: true,
+      // isHidden: true,
     },
   },
   {
@@ -29,7 +29,7 @@ export default [
       title: 'NotFound',
       icon: '',
       auth: ['admin', 'normal'],
-      isHidden: true,
+      // isHidden: true,
     },
   },
   {
@@ -40,7 +40,7 @@ export default [
       title: '布局',
       icon: '',
       auth: ['admin', 'normal'],
-      isHidden: true,
+      // isHidden: true,
     },
     redirect: '/dashboard',
     children: [
@@ -52,7 +52,7 @@ export default [
           title: '主页',
           icon: '',
           auth: ['admin', 'normal'],
-          isHidden: true,
+          // isHidden: true,
         },
       },
       /****************组件案例路由********************************** */
@@ -64,7 +64,29 @@ export default [
           title: '表格',
           icon: '',
           auth: ['admin', 'normal'],
-          isHidden: true,
+          // isHidden: true,
+        },
+      },
+      {
+        path: '/modal',
+        name: 'Modal',
+        component: () => import('@/views/demo/modal'),
+        meta: {
+          title: '对话框',
+          icon: '',
+          auth: ['admin', 'normal'],
+          // isHidden: true,
+        },
+      },
+      {
+        path: '/drawer',
+        name: 'Drawer',
+        component: () => import('@/views/demo/drawer'),
+        meta: {
+          title: '抽屉',
+          icon: '',
+          auth: ['admin', 'normal'],
+          // isHidden: true,
         },
       },
       {
@@ -75,7 +97,7 @@ export default [
           title: '无限级菜单',
           icon: '',
           auth: ['admin', 'normal'],
-          isHidden: true,
+          // isHidden: true,
           noBreadcrumbLink: true, //面包屑导航，显示为普通文本
         },
         children: [
@@ -87,7 +109,7 @@ export default [
               title: 'page1',
               icon: '',
               auth: ['admin', 'normal'],
-              isHidden: false,
+              // isHidden: false,
             },
           },
           {
@@ -98,7 +120,7 @@ export default [
               title: 'page2',
               icon: '',
               auth: ['admin', 'normal'],
-              isHidden: false,
+              // isHidden: false,
               noBreadcrumbLink: true,
             },
             children: [
@@ -111,7 +133,7 @@ export default [
                   title: 'page2-1',
                   icon: '',
                   auth: ['admin', 'normal'],
-                  isHidden: false,
+                  // isHidden: false,
                 },
               },
               {
@@ -123,7 +145,7 @@ export default [
                   title: 'page2-2',
                   icon: '',
                   auth: ['admin', 'normal'],
-                  isHidden: false,
+                  // isHidden: false,
                 },
               },
             ],
@@ -136,7 +158,7 @@ export default [
               title: 'page3',
               icon: '',
               auth: ['admin', 'normal'],
-              isHidden: false,
+              // isHidden: false,
             },
             children: [
               {
@@ -148,7 +170,7 @@ export default [
                   title: 'page3-1',
                   icon: '',
                   auth: ['admin', 'normal'],
-                  isHidden: false,
+                  // isHidden: false,
                   noBreadcrumbLink: true,
                 },
               },
@@ -161,7 +183,7 @@ export default [
                   title: 'page3-2',
                   icon: '',
                   auth: ['admin', 'normal'],
-                  isHidden: false,
+                  // isHidden: false,
                 },
                 children: [
                   {
@@ -175,7 +197,7 @@ export default [
                       title: 'page3-2-1',
                       icon: '',
                       auth: ['admin', 'normal'],
-                      isHidden: false,
+                      // isHidden: false,
                       noBreadcrumbLink: true,
                     },
                   },
