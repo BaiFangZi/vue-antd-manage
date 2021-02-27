@@ -62,12 +62,8 @@ export default {
 
   },
   created () {
-    const routes = this.$router.options.routes
-    // console.log(this.$route)
-    // console.log(routes)
-    const menuRoutes = routes.find(r => r.path === '/layout').children
-    // console.log(menuRoutes)
-    this.menus = formatMenu(menuRoutes)
+
+    this.menus = formatMenu(this.$store.state.console.menuList)
     // console.log(this.menus)
   },
   methods: {

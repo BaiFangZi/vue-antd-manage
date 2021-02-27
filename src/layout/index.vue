@@ -67,7 +67,7 @@ export default {
     userCenter () { },
     loginOut () {
       this.clearToken()
-      this.$router.push('/login')
+      location.reload();
     }
   },
 };

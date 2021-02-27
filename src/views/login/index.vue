@@ -1,20 +1,20 @@
 <template>
   <div class="login-form">
     <a-form-model ref="ruleForm" :model="ruleForm" :rules="rules" v-bind="layout">
-      <a-form-model-item has-feedback label="Password" prop="pass">
-        <a-input v-model="ruleForm.pass" type="password" autocomplete="off" />
+      <a-form-model-item has-feedback label="账号" prop="user">
+        <a-input v-model="ruleForm.user" autocomplete="off" />
       </a-form-model-item>
-      <a-form-model-item has-feedback label="Confirm" prop="checkPass">
-        <a-input v-model="ruleForm.checkPass" type="password" autocomplete="off" />
+      <a-form-model-item has-feedback label="密码" prop="password">
+        <a-input v-model="ruleForm.password" type="password" autocomplete="off" />
       </a-form-model-item>
 
       <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
-        <a-button type="primary" @click="submitForm('ruleForm')">
-          Submit
+        <a-button class="login-submit-btn" type="primary" @click="submitForm('ruleForm')">
+          登陆
         </a-button>
-        <a-button style="margin-left: 10px" @click="resetForm('ruleForm')">
+        <!-- <a-button style="margin-left: 10px" @click="resetForm('ruleForm')">
           Reset
-        </a-button>
+        </a-button> -->
       </a-form-model-item>
     </a-form-model>
   </div>
@@ -24,25 +24,8 @@ import { mapMutations } from "vuex";
 import { login } from "@/api/app";
 export default {
   data () {
-    // let checkPending;
-    // let checkAge = (rule, value, callback) => {
-    //   clearTimeout(checkPending);
-    //   if (!value) {
-    //     return callback(new Error("Please input the age"));
-    //   }
-    //   checkPending = setTimeout(() => {
-    //     if (!Number.isInteger(value)) {
-    //       callback(new Error("Please input digits"));
-    //     } else {
-    //       if (value < 18) {
-    //         callback(new Error("Age must be greater than 18"));
-    //       } else {
-    //         callback();
-    //       }
-    //     }
-    //   }, 1000);
-    // };
-    let validatePass = (rule, value, callback) => {
+
+    let validateUser = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("Please input the password"));
       } else {
@@ -52,7 +35,7 @@ export default {
         callback();
       }
     };
-    let validatePass2 = (rule, value, callback) => {
+    let validatePassWord = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("Please input the password again"));
       } else if (value !== this.ruleForm.pass) {
@@ -63,21 +46,21 @@ export default {
     };
     return {
       ruleForm: {
-        pass: "",
-        checkPass: "",
+        user: "12",
+        password: "12",
         // age: "",
       },
       rules: {
         pass: [
           {
-            validator: validatePass,
-            trigger: "change",
+            validator: validateUser,
+            trigger: "blur",
           },
         ],
         checkPass: [
           {
-            validator: validatePass2,
-            trigger: "change",
+            validator: validatePassWord,
+            trigger: "blur",
           },
         ],
         // age: [
@@ -98,9 +81,9 @@ export default {
     };
   },
   methods: {
-    // ...mapMutations("console", {
-    //   generateRouter: "GENERATE_ROUTER",
-    // }),
+    ...mapMutations("console", {
+      generateRouter: "GENERATE_ROUTER",
+    }),
     ...mapMutations('app', {
       setToken: "SET_TOKEN"
     }),
@@ -111,9 +94,9 @@ export default {
             .then((res) => {
               const { auth } = res.data.data
               // console.log(res)
-              // this.generateRouter(); //生成路由
               this.setToken(auth) //将token存入localStorage
-              this.$router.push({ path: "/dashboard" });
+              this.generateRouter(); //生成路由
+              this.$router.push({ path: "/table" });
 
             })
             .catch((err) => { });
@@ -123,9 +106,7 @@ export default {
         }
       });
     },
-    resetForm (formName) {
-      this.$refs[formName].resetFields();
-    },
+
   },
 };
 </script>
@@ -136,7 +117,9 @@ export default {
   align-items: center;
   flex-flow: row wrap;
   height: 100%;
-
+  .login-submit-btn {
+    width: 100%;
+  }
   .ant-form {
     width: 500px;
   }

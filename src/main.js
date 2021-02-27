@@ -6,39 +6,51 @@ import router from './router'
 import store from './store'
 import './assets/global.css'
 import './mock'
-import { replace } from 'lodash'
 
 import TableOperations from './components/TableOperations'
 Vue.config.productionTip = false
 
 Vue.use(AntD)
 const whiteRoutes = ['/login'] //路由白名单
-const hasToken = localStorage.getItem('access-token')
-console.log(hasToken)
-// router.beforeEach((to, from, next) => {
-//   //白名单路由可以直接跳转
-//   if (whiteRoutes.includes(to.path)) {
-//     next()
-//   } else {
-//     //其他路由需要token
-//     if (hasToken) {
-//       //如果有token允许跳转
-//       store.commit('console/GENERATE_ROUTER')
-//       console.log(router)
-//       next()
-//       // next('/page1')
-//       next({
-//         // path: to.path,
-//         // ...to,
-//         // replace: true,
-//       })
-//     } else {
-//       //没有token就跳转到登陆页
-//       next('/login')
-//     }
-//   }
-//   next()
-// })
+
+router.beforeEach((to, from, next) => {
+  const hasToken = localStorage.getItem('access-token')
+
+  if (hasToken) {
+    //如果有token
+    if (to.path === '/login') {
+      //想跳转找到login页面
+      next() //允许跳转
+    } else {
+      //想跳转到其他页面
+
+      const menuList = store.state.console.menuList
+      if (!menuList.length) {
+        // const auth = JWT.decode(token)
+        // console.log(auth)
+        store.commit('console/GENERATE_ROUTER')
+        next({
+          ...to,
+          replace: true,
+        })
+      } else {
+        next()
+      }
+    }
+  } else {
+    //如果没有token
+    // console.log('no token')
+    if (whiteRoutes.indexOf(to.path) !== -1) {
+      //设置login白名单，防止login无token时陷入死循环
+      console.log(to.path)
+      next()
+    } else {
+      //如果不是login，跳到login登陆去获取token
+      next('/login')
+    }
+  }
+})
+
 Vue.component('table-operations', TableOperations)
 
 new Vue({

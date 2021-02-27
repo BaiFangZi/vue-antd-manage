@@ -34,7 +34,7 @@ export default {
           const { meta, path } = r
           return { meta, path }
         })
-        console.log(matchedRoute)
+        // console.log(matchedRoute)
 
         const filterRoute = matchedRoute.slice(1)
         if (this.$route.path !== '/dashboard') {//如果不是首页
@@ -48,7 +48,7 @@ export default {
           )
         }
         this.filterRoute = filterRoute
-        console.log(filterRoute)
+        // console.log(filterRoute)
       }
     }
   }

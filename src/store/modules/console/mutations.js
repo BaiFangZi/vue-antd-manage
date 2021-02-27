@@ -1,22 +1,22 @@
 import state from './state'
-import Router from '@/router'
-import AsyncRoutes from '@/router/routes/asyncRoutes'
-import SyncRoutes from '@/router/routes/syncRoutes'
+import router from '@/router'
+import asyncRoutes from '@/router/routes/asyncRoutes'
+import constantRoutes from '@/router/routes/constantRoutes'
 
 import { findIndex, remove } from 'lodash'
+// import router from '../../../router'
 
 export default {
   GENERATE_ROUTER() {
-    const containerIndex = findIndex(SyncRoutes, {
-      path: '/layout',
-    })
-    const Layout = SyncRoutes[containerIndex]
-    remove(Layout.children, (r) => r.path !== '/dashboard') //还原children数组，防止重复push
-    Layout.children.push(...AsyncRoutes)
-    // state.menus= AsyncRoutes
+    const layout = constantRoutes.find((v) => v.path === '/')
+    console.log(layout)
+    layout.children = state.menuList = asyncRoutes
+    console.log(layout.children)
 
-    Router.$addRoute(SyncRoutes)
+    // router.addRoute(syncRoutes)
 
-    // console.log(Router.options)
+    constantRoutes.forEach((r) => router.addRoute(r))
+
+    // console.log(router)
   },
 }
