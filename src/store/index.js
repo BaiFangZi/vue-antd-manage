@@ -1,20 +1,17 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
-import modules from './modules'
-console.log(modules)
+// import modules from './modules/index.js'
+// console.log(modules)
 Vue.use(Vuex)
+const modules = {}
 
-const files = require.context('./modules', true, /\.js$/)
+//配置导包
+const filePath = require.context('./modules', true, /index\.js$/) //获取index.js文件
+filePath.keys().forEach((file) => {
+  const moduleName = file.replace(/\.\/(.+)\/index\.js/, '$1') //    ./app/index.js -->app
+  modules[moduleName] = filePath(file).default
+})
 
-// const modules = modulesFiles.keys().reduce((modules, modulePath) => {
-//   // set './app.js' => 'app'
-//   const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
-//   const value = modulesFiles(modulePath)
-//   modules[moduleName] = value.default
-//   return modules
-// }, {})
-
-console.log(files.keys())
 const store = new Vuex.Store({
   strict: true,
   modules,
