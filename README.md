@@ -1,29 +1,24 @@
-# vue-antd-manage
+## 项目简介
 
-## Project setup
++ 技术栈：vue2+vue-router+axios+ant-design-vue
 
-```
+## 运行
+
+### 下载依赖
+
+~~~
 npm install
-```
+~~~
 
-### Compiles and hot-reloads for development
+### 启动
 
-```
-npm run serve
-```
+~~~
+npm run dev
+~~~
 
-### Compiles and minifies for production
+### 打包
 
-```
+~~~
 npm run build
-```
+~~~
 
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).

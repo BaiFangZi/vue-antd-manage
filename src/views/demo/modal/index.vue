@@ -1,8 +1,13 @@
 <template>
-  <a-button @click="showConfirm">
-    Confirm
-  </a-button>
+  <div>
+    <a-button @click="showConfirm">
+      Confirm
+    </a-button>
+
+  </div>
+
 </template>
+
 <script>
 export default {
   methods: {

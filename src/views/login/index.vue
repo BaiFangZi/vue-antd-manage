@@ -1,11 +1,11 @@
 <template>
   <div class="login-form">
     <a-form-model ref="ruleForm" :model="ruleForm" :rules="rules" v-bind="layout">
-      <a-form-model-item has-feedback label="账号" prop="user">
+      <a-form-model-item label="账号" placeholder="admin" prop="user">
         <a-input v-model="ruleForm.user" autocomplete="off" />
       </a-form-model-item>
-      <a-form-model-item has-feedback label="密码" prop="password">
-        <a-input v-model="ruleForm.password" type="password" autocomplete="off" />
+      <a-form-model-item label="密码" placeholder="123456" prop="password">
+        <a-input-password v-model="ruleForm.password" type="password" autocomplete="off" />
       </a-form-model-item>
 
       <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
@@ -22,53 +22,60 @@
 <script>
 import { mapMutations } from "vuex";
 import { login } from "@/api/app";
+import { isAccount, isPassword } from '@/utils/formReg'
 export default {
   data () {
 
     let validateUser = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("Please input the password"));
+
+      if (value.trim() === '') {
+        callback('账号不能为空')
       } else {
-        if (this.ruleForm.checkPass !== "") {
-          this.$refs.ruleForm.validateField("checkPass");
+
+        if (isAccount.test(value)) {
+
+          callback()
+        } else {
+          callback('英文数字4-16位')
         }
-        callback();
       }
+
     };
     let validatePassWord = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("Please input the password again"));
-      } else if (value !== this.ruleForm.pass) {
-        callback(new Error("Two inputs don't match!"));
+      if (value.trim() === '') {
+        callback('密码不能为空')
       } else {
-        callback();
+        if (isPassword.test(value)) {
+
+          callback()
+        } else {
+          console.log('wewewewe')
+          callback('英文数字下划线4-16位')
+        }
       }
+
+      // isPassWord.test(value) ? callback() : callback('英文数字下划线4-16位')
+
     };
     return {
       ruleForm: {
-        user: "12",
-        password: "12",
+        user: "",
+        password: "",
         // age: "",
       },
       rules: {
-        pass: [
+        user: [
           {
             validator: validateUser,
-            trigger: "blur",
+            trigger: "change",
           },
         ],
-        checkPass: [
+        password: [
           {
             validator: validatePassWord,
-            trigger: "blur",
+            trigger: "change",
           },
         ],
-        // age: [
-        //   {
-        //     validator: checkAge,
-        //     trigger: "change",
-        //   },
-        // ],
       },
       layout: {
         labelCol: {
@@ -89,6 +96,7 @@ export default {
     }),
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
+        console.log(valid)
         if (valid) {
           login()
             .then((res) => {
@@ -99,7 +107,7 @@ export default {
               this.$router.push({ path: "/table" });
 
             })
-            .catch((err) => { });
+            .catch((err) => { console.log(err) });
         } else {
           console.log("error submit!!");
           return false;
