@@ -6,10 +6,10 @@ Vue.use(Vuex)
 const modules = {}
 
 //配置导包
-const filePath = require.context('./modules', true, /index\.js$/) //获取index.js文件
-filePath.keys().forEach((file) => {
-  const moduleName = file.replace(/\.\/(.+)\/index\.js/, '$1') //    ./app/index.js -->app
-  modules[moduleName] = filePath(file).default
+const files = require.context('./modules', true, /index\.js$/) //获取index.js文件
+files.keys().forEach((f) => {
+  const moduleName = f.replace(/\.\/(.+)\/index\.js/, '$1') //    ./app/index.js -->app
+  modules[moduleName] = files(f).default
 })
 
 const store = new Vuex.Store({

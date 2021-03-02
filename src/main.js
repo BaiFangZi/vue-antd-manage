@@ -5,13 +5,22 @@ import 'ant-design-vue/dist/antd.css'
 import router from './router'
 import store from './store'
 import './assets/global.css'
+import directives from './directives'
 import './mock'
 
 import TableOperations from './components/TableOperations'
-import hasPermission from './directives/modules/hasPermission'
+// import hasPermission from './directives/modules/has'
+
+//遍历添加权限
+Object.keys(directives).forEach((key) => Vue.directive(key, directives[key]))
+
+//遍历添加全局组件
+Vue.component('table-operations', TableOperations)
+
 Vue.config.productionTip = false
 
 Vue.use(AntD)
+
 const whiteRoutes = ['/login'] //路由白名单
 
 router.beforeEach((to, from, next) => {
@@ -52,9 +61,6 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-Vue.component('table-operations', TableOperations)
-Vue.directive('has', hasPermission)
-console.log(hasPermission)
 new Vue({
   render: (h) => h(App),
   router,

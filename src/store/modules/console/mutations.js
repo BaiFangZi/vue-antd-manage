@@ -11,7 +11,7 @@ export default {
     const layout = constantRoutes.find((v) => v.path === '/')
     // const auth=localStorage.getItem
     const authRoutes = traversalRoutes(asyncRoutes, auth)
-    console.log(authRoutes)
+    console.log('当前权限的路由', authRoutes)
     layout.children = state.menuList = authRoutes
 
     // router.addRoute(syncRoutes)
