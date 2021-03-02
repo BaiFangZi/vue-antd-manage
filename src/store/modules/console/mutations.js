@@ -1,4 +1,4 @@
-import state from './state'
+// import state from './state'
 import router from '@/router'
 import asyncRoutes from '@/router/routes/asyncRoutes'
 import constantRoutes from '@/router/routes/constantRoutes'
@@ -7,11 +7,12 @@ import { findIndex, remove } from 'lodash'
 // import router from '../../../router'
 
 export default {
-  GENERATE_ROUTER() {
+  GENERATE_ROUTER(state, auth) {
     const layout = constantRoutes.find((v) => v.path === '/')
-    console.log(layout)
-    layout.children = state.menuList = asyncRoutes
-    console.log(layout.children)
+    // const auth=localStorage.getItem
+    const authRoutes = traversalRoutes(asyncRoutes, auth)
+    console.log(authRoutes)
+    layout.children = state.menuList = authRoutes
 
     // router.addRoute(syncRoutes)
 
@@ -19,4 +20,22 @@ export default {
 
     // console.log(router)
   },
+}
+function traversalRoutes(routes, userAuth) {
+  // console.log(userAuth)
+  const result = []
+  // console.log(routes
+  routes.forEach((r) => {
+    const { auth } = r.meta
+    const userRoute = { ...r }
+    if (auth.includes(userAuth)) {
+      //找到用户身份对应的路由
+      if (r.children && r.children.length) {
+        //有子路由的话去递归
+        userRoute.children = traversalRoutes(r.children, userAuth)
+      }
+      result.push(userRoute)
+    }
+  })
+  return result
 }

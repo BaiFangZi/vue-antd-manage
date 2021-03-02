@@ -14,9 +14,9 @@ Vue.use(AntD)
 const whiteRoutes = ['/login'] //路由白名单
 
 router.beforeEach((to, from, next) => {
-  const hasToken = localStorage.getItem('access-token')
+  const token = localStorage.getItem('access-token')
 
-  if (hasToken) {
+  if (token) {
     //如果有token
     if (to.path === '/login') {
       //想跳转找到login页面
@@ -28,7 +28,7 @@ router.beforeEach((to, from, next) => {
       if (!menuList.length) {
         // const auth = JWT.decode(token)
         // console.log(auth)
-        store.commit('console/GENERATE_ROUTER')
+        store.commit('console/GENERATE_ROUTER', token)
         next({
           ...to,
           replace: true,

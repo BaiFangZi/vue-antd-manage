@@ -103,7 +103,7 @@ export default {
               const { auth } = res.data.data
               // console.log(res)
               this.setToken(auth) //将token存入localStorage
-              this.generateRouter(); //生成路由
+              this.generateRouter(auth); //生成路由
               this.$router.push({ path: "/table" });
 
             })

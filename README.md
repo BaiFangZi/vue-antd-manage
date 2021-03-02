@@ -1,24 +1,67 @@
 ## 项目简介
 
-+ 技术栈：vue2+vue-router+axios+ant-design-vue
+写在前面===>这是一个vue+antdv的后台管理模板
 
-## 运行
+项目地址: https://github.com/BaiFangZi/vue-antd-manage
 
-### 下载依赖
+![image-20210301190957303](https://gitee.com/baifangzi/blogimage/raw/master/img/20210301191008.png)
 
-~~~
-npm install
-~~~
+### 概述
 
-### 启动
+​	最近经常使用ant-design-vue框架，一方面为了沉淀一下自己，另一方面也为了以后能够用这套框架快速开发，我抽空用它搭了一个后台管理模板，欢迎大家学习讨论，功能持续集成中。。。各位同学走过路过感兴趣可以点个star支持一下（2021.3.1）目前基本骨架已搭建完成
 
-~~~
-npm run dev
-~~~
+### 技术栈
 
-### 打包
++ vue+vuex+ vue-router全家桶
++ axios
++ ant-design-vue
 
-~~~
-npm run build
-~~~
+## 已实现功能
 
+### 组件部分
+
++ 面包屑导航
+
++ 无限级菜单
+
++ 表格
+
++ 弹窗
+
++ 抽屉
+
+  
+
+### 权限部分
+
++ 动态路由添加
+
+
+
+## 使用
+
++ 下载
+
+  ~~~
+  npm install
+  ~~~
+
++ 启动
+
+  ~~~
+  npm run dev
+  ~~~
+
++ 打包
+
+  ~~~
+  npm run build
+  ~~~
+
+  
+
+
+
+
+
+项目地址: https://github.com/BaiFangZi/vue-antd-manage

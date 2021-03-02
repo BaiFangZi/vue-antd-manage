@@ -186,7 +186,7 @@ export default [
         meta: {
           title: '普通用户',
           icon: '',
-          auth: ['normal'],
+          auth: ['admin', 'normal'],
         },
       },
     ],
