@@ -201,4 +201,37 @@ export default [
       },
     ],
   },
+  //echarts图表
+  {
+    path: '/charts',
+    name: 'Charts',
+    component: () => import('@/views/demo/charts'),
+    meta: {
+      title: '图表',
+      icon: '',
+      auth: ['admin', 'normal'],
+    },
+  },
+  // 文件导出
+  {
+    path: '/exportFile',
+    name: 'ExportFile',
+    component: () => import('@/views/demo/exportFile'),
+    meta: {
+      title: '文件导出',
+      icon: '',
+      auth: ['admin', 'normal'],
+    },
+  },
+  //编辑器
+  {
+    path: '/editor',
+    name: 'Editor',
+    component: () => import('@/views/demo/editor'),
+    meta: {
+      title: '编辑器',
+      icon: '',
+      auth: ['admin', 'normal'],
+    },
+  },
 ]
