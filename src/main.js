@@ -8,6 +8,7 @@ import './assets/global.css'
 import './mock'
 
 import TableOperations from './components/TableOperations'
+import hasPermission from './directives/modules/hasPermission'
 Vue.config.productionTip = false
 
 Vue.use(AntD)
@@ -52,7 +53,8 @@ router.beforeEach((to, from, next) => {
 })
 
 Vue.component('table-operations', TableOperations)
-
+Vue.directive('has', hasPermission)
+console.log(hasPermission)
 new Vue({
   render: (h) => h(App),
   router,

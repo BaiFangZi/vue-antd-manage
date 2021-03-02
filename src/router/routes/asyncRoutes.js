@@ -189,6 +189,16 @@ export default [
           auth: ['admin', 'normal'],
         },
       },
+      {
+        path: '/permission/authBtn',
+        name: 'permissionAuthBtn',
+        component: () => import('@/views/demo/permission/authBtn'),
+        meta: {
+          title: '按钮权限',
+          icon: '',
+          auth: ['admin', 'normal'],
+        },
+      },
     ],
   },
 ]
