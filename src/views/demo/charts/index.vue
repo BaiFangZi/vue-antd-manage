@@ -8,29 +8,30 @@
 import options from './options'
 export default {
   name: 'Chart',
-  data () {
+  data() {
     return {
-      chart: {}
+      chart: {},
+      realTimeData: '',
     }
   },
-  mounted () {
+  mounted() {
     this.chart = this.$echarts.init(this.$refs.myChart)
     this.chart.setOption(options)
     //解决初次生成会超过父容器宽度
     setTimeout(() => {
-      this.chart.resize();
+      this.chart.resize()
     }, 1)
 
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       // console.log(this.chart)
       if (this.chart) {
         this.chart.resize()
       }
-    });
-    setInterval(this.queryData, 1000)
+    })
+    this.realTimeData = setInterval(this.queryData, 1000)
   },
   methods: {
-    queryData () {
+    queryData() {
       setTimeout(() => {
         let date = new Date()
         const now = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
@@ -46,22 +47,25 @@ export default {
 
         this.chart.setOption({
           xAxis: {
-            data: xData
+            data: xData,
           },
-          series: [{
-            name: '销量',
-            data: yData
-          }]
+          series: [
+            {
+              name: '销量',
+              data: yData,
+            },
+          ],
         })
-      }, 500);
-
-    }
+      }, 500)
+    },
   },
-  beforeDestroy () {
-    // console.log('销毁组件')
-    window.removeEventListener("resize", this.chart.resize); //
-    this.chart = null; //销毁实例，避免刷新卡顿
-  }
+  beforeDestroy() {
+    console.log('销毁组件')
+    console.log(this.realTimeData)
+    window.removeEventListener('resize', this.chart.resize) //
+    clearInterval(this.realTimeData)
+    // this.chart = null //销毁实例，避免刷新卡顿
+  },
 }
 </script>
 <style lang="scss">
