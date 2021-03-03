@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import AntD from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
+
 import router from './router'
 import store from './store'
 import './assets/global.css'
@@ -9,7 +10,6 @@ import directives from './directives'
 import './mock'
 
 import TableOperations from './components/TableOperations'
-// import hasPermission from './directives/modules/has'
 
 //遍历添加权限
 Object.keys(directives).forEach((key) => Vue.directive(key, directives[key]))
@@ -20,6 +20,9 @@ Vue.component('table-operations', TableOperations)
 Vue.config.productionTip = false
 
 Vue.use(AntD)
+// Vue.use(Echarts)
+import * as Echarts from 'echarts' //echarts5.0
+Vue.prototype.$echarts = Echarts
 
 const whiteRoutes = ['/login'] //路由白名单
 

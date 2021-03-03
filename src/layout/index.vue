@@ -26,15 +26,10 @@
       </a-layout-header>
 
       <!-- <a-divider /> -->
+
       <a-layout-content>
         <div style="height:50px;background:#fff;border-top:1px solid #eee"></div>
-        <div :style="{
-          margin: '24px 16px',
-          padding: '24px',
-          background: '#fff',
-          minHeight: '280px',
-         height:'calc(100% - 98px)'
-        }">
+        <div style="margin:24px 16px;padding:24px;background:#fff;min-height:280px;height:calc(100% - 98px);">
           <router-view></router-view>
         </div>
 

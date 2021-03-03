@@ -21,29 +21,29 @@ export default [
       // isHidden: true,
     },
   },
-  {
-    path: '/modal',
-    name: 'Modal',
-    component: () => import('@/views/demo/modal'),
-    meta: {
-      title: '对话框',
-      icon: '',
-      auth: ['admin', 'normal'],
-      // isHidden: true,
-    },
-  },
-  //
-  {
-    path: '/drawer',
-    name: 'Drawer',
-    component: () => import('@/views/demo/drawer'),
-    meta: {
-      title: '抽屉',
-      icon: '',
-      auth: ['admin', 'normal'],
-      // isHidden: true,
-    },
-  },
+  // {
+  //   path: '/modal',
+  //   name: 'Modal',
+  //   component: () => import('@/views/demo/modal'),
+  //   meta: {
+  //     title: '对话框',
+  //     icon: '',
+  //     auth: ['admin', 'normal'],
+  //     // isHidden: true,
+  //   },
+  // },
+  // //
+  // {
+  //   path: '/drawer',
+  //   name: 'Drawer',
+  //   component: () => import('@/views/demo/drawer'),
+  //   meta: {
+  //     title: '抽屉',
+  //     icon: '',
+  //     auth: ['admin', 'normal'],
+  //     // isHidden: true,
+  //   },
+  // },
   //无限菜单
   {
     path: '/infinitePage',
