@@ -7,7 +7,11 @@
     <a-layout>
       <a-layout-header class="header">
         <div class="header-left">
-          <a-icon class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="() => (collapsed = !collapsed)" />
+          <a-icon
+            class="trigger"
+            :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+            @click="() => (collapsed = !collapsed)"
+          />
           <bread-crumb></bread-crumb>
         </div>
         <div class="header-right">
@@ -15,63 +19,74 @@
             <!-- <a-icon class="user" type="user" /> -->
             <a-dropdown class="avatar">
               <a-menu slot="overlay">
-                <a-menu-item key="userCenter" @click="userCenter">个人中心</a-menu-item>
-                <a-menu-item key="layout" @click="loginOut">退出登陆</a-menu-item>
-
+                <a-menu-item key="userCenter" @click="userCenter">{{
+                  $t('system.account')
+                }}</a-menu-item>
+                <a-menu-item key="layout" @click="signOut">{{
+                  $t('system.signOut')
+                }}</a-menu-item>
               </a-menu>
               <a-button shape="circle" icon="user"></a-button>
             </a-dropdown>
           </span>
         </div>
       </a-layout-header>
-
-      <!-- <a-divider /> -->
-
       <a-layout-content>
-        <div style="height:50px;background:#fff;border-top:1px solid #eee"></div>
-        <div style="margin:24px 16px;padding:24px;background:#fff;min-height:280px;height:calc(100% - 98px);">
-          <router-view></router-view>
+     
+         <router-tags></router-tags>
+        <div class="main">
+          <!-- 缓存路由组件 -->
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
         </div>
-
       </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
 <script>
-import SideBar from "./components/sideBar";
-import TabTags from './components/tabTags'
+import SideBar from './components/sideBar'
+import RouterTags from './components/routerTags'
 import BreadCrumb from './components/breadcrumb'
-import { mapMutations } from 'vuex';
+import { mapMutations } from 'vuex'
 export default {
-  name: "layout",
+  name: 'layout',
   components: {
     SideBar,
-    TabTags,
-    BreadCrumb
+    RouterTags,
+    BreadCrumb,
   },
-  data () {
+  data() {
     return {
       collapsed: false,
-      isLogin: ''
-    };
+      isLogin: '',
+    }
   },
   methods: {
     ...mapMutations('app', {
-      clearToken: 'CLEAR_TOKEN'
+      clearToken: 'CLEAR_TOKEN',
     }),
-    userCenter () { },
-    loginOut () {
+    userCenter() {
+      this.$router.push('/userCenter')
+    },
+    signOut() {
       this.clearToken()
-      location.reload();
-    }
+      location.reload()
+    },
   },
-};
+}
 </script>
 <style lang="scss">
 #screen {
   min-height: 100%;
+  .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+  }
   .header {
     background: rgb(255, 255, 255);
+    height: 50px;
     padding: 0px;
     display: flex;
     justify-content: space-between;
@@ -80,32 +95,34 @@ export default {
       display: flex;
       align-items: center;
     }
-    // position: static;
-    // top: 0;
+
+    .trigger {
+      font-size: 18px;
+      line-height: 50px;
+      padding: 0 24px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .trigger:hover {
+      color: #1890ff;
+    }
+
+    .header-msg {
+      float: right;
+      padding-right: 24px;
+      // margin: 0 16px 0 0;
+      // .user {
+      //   font-size: 18px;
+      // }
+    }
   }
-  .trigger,
-  .user {
-    font-size: 18px;
-    line-height: 64px;
-    padding: 0 24px;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  .trigger:hover {
-    color: #1890ff;
-  }
-  .logo {
-    height: 32px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 16px;
-  }
-  .header-msg {
-    float: right;
-    padding-right: 24px;
-    // margin: 0 16px 0 0;
-    // .user {
-    //   font-size: 18px;
-    // }
+  
+  .main {
+    margin: 24px 16px;
+    padding: 24px;
+    background: #fff;
+    min-height: 280px;
+    height: calc(100% - 98px);
   }
 }
 </style>

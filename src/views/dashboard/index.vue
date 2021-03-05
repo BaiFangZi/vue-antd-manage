@@ -1,14 +1,11 @@
 <template>
-    <div>
-        首页
-    </div>
-
+  <div></div>
 </template>
 <script>
-    export default {
-        name: 'Dashboard',
-        data() {
-            return {}
-        },
-    }
+export default {
+  name: 'Dashboard',
+  data() {
+    return {}
+  },
+}
 </script>

@@ -2,7 +2,7 @@ import state from './state'
 export default {
   SET_TOKEN(state, token) {
     state.token = token
-    console.log(token)
+    // console.log(token)
     localStorage.setItem('access-token', token)
   },
   CLEAR_TOKEN(state) {
@@ -10,5 +10,9 @@ export default {
     if (!!localStorage.getItem('access-token')) {
       localStorage.removeItem('access-token')
     }
+  },
+  SET_LANG(state, lang) {
+    state.lang = lang
+    localStorage.setItem('lang', lang)
   },
 }

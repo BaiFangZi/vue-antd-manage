@@ -4,18 +4,29 @@ export default [
     name: 'Dashboard',
     component: () => import('@/views/dashboard'),
     meta: {
-      title: '主页',
+      title: 'dashboard',
       icon: '',
       auth: ['admin', 'normal'],
       // isHidden: true,
     },
   },
   {
+    path: '/userCenter',
+    name: 'UserCenter',
+    component: () => import('@/views/userCenter'),
+    meta: {
+      title: 'userCenter',
+      icon: '',
+      auth: ['admin', 'normal'],
+      isHidden: true,
+    },
+  },
+  {
     path: '/table',
     name: 'Table',
-    component: () => import('@/views/demo/table'),
+    component: () => import('@/views/table'),
     meta: {
-      title: '表格',
+      title: 'table',
       icon: '',
       auth: ['admin', 'normal'],
       // isHidden: true,
@@ -24,7 +35,7 @@ export default [
   // {
   //   path: '/modal',
   //   name: 'Modal',
-  //   component: () => import('@/views/demo/modal'),
+  //   component: () => import('@/views/modal'),
   //   meta: {
   //     title: '对话框',
   //     icon: '',
@@ -36,7 +47,7 @@ export default [
   // {
   //   path: '/drawer',
   //   name: 'Drawer',
-  //   component: () => import('@/views/demo/drawer'),
+  //   component: () => import('@/views/drawer'),
   //   meta: {
   //     title: '抽屉',
   //     icon: '',
@@ -48,9 +59,9 @@ export default [
   {
     path: '/infinitePage',
     name: 'InfinitePage',
-    component: () => import('@/views/demo/infinitePage'),
+    component: () => import('@/views/infinitePage'),
     meta: {
-      title: '无限级菜单',
+      title: 'infinitePage',
       icon: '',
       auth: ['admin', 'normal'],
       // isHidden: true,
@@ -60,7 +71,7 @@ export default [
       {
         path: '/page1',
         name: 'Page1',
-        component: () => import('@/views/demo/infinitePage/page1'),
+        component: () => import('@/views/infinitePage/page1'),
         meta: {
           title: 'page1',
           icon: '',
@@ -71,7 +82,7 @@ export default [
       {
         path: '/page2',
         name: 'Page2',
-        component: () => import('@/views/demo/infinitePage/page2'),
+        component: () => import('@/views/infinitePage/page2'),
         meta: {
           title: 'page2',
           icon: '',
@@ -83,9 +94,9 @@ export default [
           {
             path: '/page2-1',
             name: 'Page2-1',
-            component: () => import('@/views/demo/infinitePage/page2/page2-1'),
+            component: () => import('@/views/infinitePage/page2/page2-1'),
             meta: {
-              title: 'page2-1',
+              title: 'page2_1',
               icon: '',
               auth: ['admin', 'normal'],
               // isHidden: false,
@@ -94,9 +105,9 @@ export default [
           {
             path: '/page2-2',
             name: 'Page2-2',
-            component: () => import('@/views/demo/infinitePage/page2/page2-2'),
+            component: () => import('@/views/infinitePage/page2/page2-2'),
             meta: {
-              title: 'page2-2',
+              title: 'page2_2',
               icon: '',
               auth: ['admin', 'normal'],
               // isHidden: false,
@@ -107,7 +118,7 @@ export default [
       {
         path: '/page3',
         name: 'Page3',
-        component: () => import('@/views/demo/infinitePage/page3'),
+        component: () => import('@/views/infinitePage/page3'),
         meta: {
           title: 'page3',
           icon: '',
@@ -118,9 +129,9 @@ export default [
           {
             path: '/page3-1',
             name: 'Page3-1',
-            component: () => import('@/views/demo/infinitePage/page3/page3-1'),
+            component: () => import('@/views/infinitePage/page3/page3-1'),
             meta: {
-              title: 'page3-1',
+              title: 'page3_1',
               icon: '',
               auth: ['admin', 'normal'],
               // isHidden: false,
@@ -130,9 +141,9 @@ export default [
           {
             path: '/page3-2',
             name: 'Page3-2',
-            component: () => import('@/views/demo/infinitePage/page3/page3-2'),
+            component: () => import('@/views/infinitePage/page3/page3-2'),
             meta: {
-              title: 'page3-2',
+              title: 'page3_2',
               icon: '',
               auth: ['admin', 'normal'],
               // isHidden: false,
@@ -142,9 +153,9 @@ export default [
                 path: '/page3-2-1',
                 name: 'Page3-2-1',
                 component: () =>
-                  import('@/views/demo/infinitePage/page3/page3-2/page3-2-1'),
+                  import('@/views/infinitePage/page3/page3-2/page3-2-1'),
                 meta: {
-                  title: 'page3-2-1',
+                  title: 'page3_2_1',
                   icon: '',
                   auth: ['admin', 'normal'],
                   // isHidden: false,
@@ -161,9 +172,9 @@ export default [
   {
     path: '/permission',
     name: 'Permission',
-    component: () => import('@/views/demo/permission'),
+    component: () => import('@/views/permission'),
     meta: {
-      title: '权限管理',
+      title: 'permission',
       icon: '',
       auth: ['admin', 'normal'],
       noBreadcrumbLink: true,
@@ -172,9 +183,9 @@ export default [
       {
         path: '/permission/admin',
         name: 'permissionAdmin',
-        component: () => import('@/views/demo/permission/admin'),
+        component: () => import('@/views/permission/admin'),
         meta: {
-          title: '管理员',
+          title: 'admin',
           icon: '',
           auth: ['admin'],
         },
@@ -182,9 +193,9 @@ export default [
       {
         path: '/permission/normal',
         name: 'permissionNormal',
-        component: () => import('@/views/demo/permission/normal'),
+        component: () => import('@/views/permission/normal'),
         meta: {
-          title: '普通用户',
+          title: 'normal',
           icon: '',
           auth: ['admin', 'normal'],
         },
@@ -192,9 +203,9 @@ export default [
       {
         path: '/permission/authBtn',
         name: 'permissionAuthBtn',
-        component: () => import('@/views/demo/permission/authBtn'),
+        component: () => import('@/views/permission/authBtn'),
         meta: {
-          title: '按钮权限',
+          title: 'permissionBtn',
           icon: '',
           auth: ['admin', 'normal'],
         },
@@ -205,9 +216,9 @@ export default [
   {
     path: '/charts',
     name: 'Charts',
-    component: () => import('@/views/demo/charts'),
+    component: () => import('@/views/charts'),
     meta: {
-      title: '图表',
+      title: 'chart',
       icon: '',
       auth: ['admin', 'normal'],
     },
@@ -216,9 +227,9 @@ export default [
   {
     path: '/exportFile',
     name: 'ExportFile',
-    component: () => import('@/views/demo/exportFile'),
+    component: () => import('@/views/exportFile'),
     meta: {
-      title: '文件导出',
+      title: 'exportFile',
       icon: '',
       auth: ['admin', 'normal'],
     },
@@ -227,9 +238,9 @@ export default [
   {
     path: '/editor',
     name: 'Editor',
-    component: () => import('@/views/demo/editor'),
+    component: () => import('@/views/editor'),
     meta: {
-      title: '编辑器',
+      title: 'editor',
       icon: '',
       auth: ['admin', 'normal'],
     },

@@ -14,9 +14,11 @@ export default {
       realTimeData: '',
     }
   },
+
   mounted() {
     this.chart = this.$echarts.init(this.$refs.myChart)
-    this.chart.setOption(options)
+    // this.chart.clear()
+    this.chart.setOption(options, true)
     //解决初次生成会超过父容器宽度
     setTimeout(() => {
       this.chart.resize()

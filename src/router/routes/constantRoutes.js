@@ -4,7 +4,7 @@ export default [
     name: 'Layout',
     component: () => import('@/layout'),
     meta: {
-      title: '布局',
+      title: 'layout',
       icon: '',
       auth: ['admin', 'normal'],
       // isHidden: true,
@@ -17,7 +17,7 @@ export default [
     name: 'NotFound',
     component: () => import('@/views/404NotFound'),
     meta: {
-      title: 'NotFound',
+      title: 'notFound',
       icon: '',
       auth: ['admin', 'normal'],
       // isHidden: true,

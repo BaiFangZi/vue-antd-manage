@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 /dist
+/README.assets
 
 
 # local env files

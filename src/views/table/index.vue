@@ -1,12 +1,19 @@
 <template>
   <div>
     <table-operations @search="handleSearch"></table-operations>
-    <a-table :columns="columns" :data-source="data" class="components-table-demo-nested">
+    <a-table
+      :columns="columns"
+      :data-source="data"
+      class="components-table-demo-nested"
+    >
       <a slot="operation">Publish</a>
-      <a-table slot="expandedRowRender" :columns="innerColumns" :data-source="innerData" :pagination="false">
-        <span slot="status">
-          <a-badge status="success" />Finished
-        </span>
+      <a-table
+        slot="expandedRowRender"
+        :columns="innerColumns"
+        :data-source="innerData"
+        :pagination="false"
+      >
+        <span slot="status"> <a-badge status="success" />Finished </span>
         <span slot="operation" class="table-operation">
           <a>Pause</a>
           <a>Stop</a>
@@ -19,7 +26,8 @@
                 Action 2
               </a-menu-item>
             </a-menu>
-            <a> More
+            <a>
+              More
               <a-icon type="down" />
             </a>
           </a-dropdown>
@@ -36,10 +44,14 @@ const columns = [
   { title: 'Upgraded', dataIndex: 'upgradeNum', key: 'upgradeNum' },
   { title: 'Creator', dataIndex: 'creator', key: 'creator' },
   { title: 'Date', dataIndex: 'createdAt', key: 'createdAt' },
-  { title: 'Action', key: 'operation', scopedSlots: { customRender: 'operation' } },
-];
+  {
+    title: 'Action',
+    key: 'operation',
+    scopedSlots: { customRender: 'operation' },
+  },
+]
 
-const data = [];
+const data = []
 for (let i = 0; i < 3; ++i) {
   data.push({
     key: i,
@@ -49,7 +61,7 @@ for (let i = 0; i < 3; ++i) {
     upgradeNum: 500,
     creator: 'Jack',
     createdAt: '2014-12-24 23:12:00',
-  });
+  })
 }
 
 const innerColumns = [
@@ -63,35 +75,32 @@ const innerColumns = [
     key: 'operation',
     scopedSlots: { customRender: 'operation' },
   },
-];
+]
 
-const innerData = [];
+const innerData = []
 for (let i = 0; i < 3; ++i) {
   innerData.push({
     key: i,
     date: '2014-12-24 23:12:00',
     name: 'This is production name',
     upgradeNum: 'Upgraded: 56',
-  });
+  })
 }
 
 export default {
-  components: {
-
-  },
-  data () {
+  components: {},
+  data() {
     return {
       data,
       columns,
       innerColumns,
       innerData,
-    };
+    }
   },
   methods: {
-    handleSearch (val) {
+    handleSearch(val) {
       console.log(val)
-    }
-  }
-
-};
+    },
+  },
+}
 </script>
