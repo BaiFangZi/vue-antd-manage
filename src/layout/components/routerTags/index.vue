@@ -3,6 +3,7 @@
     <div class="tags-view">
       <div class="tags-box" :style="{ left: -leftValue + 'px' }">
         <router-link
+          style="line-height:40px"
           class="tag-item"
           :class="$route.path === '/dashboard' ? 'tag-active' : ''"
           to="/dashboard"
@@ -50,6 +51,7 @@ export default {
       tagsBox: null,
       offset: 200,
       leftValue: 0,
+      viewWidth: 0,
       leftDisabled: false,
       rightDisabled: false,
     }
@@ -61,6 +63,10 @@ export default {
   },
   mounted() {
     this.tagsBox = document.querySelector('.tags-box')
+    this.viewWidth = this.tagsBox.parentNode.offsetWidth
+    window.addEventListener('resize', () => {
+      this.viewWidth = this.tagsBox.parentNode.offsetWidth //可见宽度
+    })
   },
   methods: {
     ...mapMutations('routerTags', {
@@ -100,8 +106,8 @@ export default {
     },
     handleLeftOffset() {
       this.rightDisabled = false
-      const viewWidth = this.tagsBox.parentNode.offsetWidth //实际宽度
-      const realWidth = this.tagsBox.scrollWidth //可见宽度
+      const viewWidth = this.tagsBox.parentNode.offsetWidth //可见宽度
+      const realWidth = this.tagsBox.scrollWidth //实际宽度
       const isMove =
         this.leftValue + this.offset + viewWidth < realWidth ? true : false
       if (isMove) {
@@ -123,18 +129,20 @@ export default {
         this.rightDisabled = true
         // this.leftDisabled = false
       }
-
-      // const viewWidth = this.tagsBox.parentNode.offsetWidth //实际宽度
-      // const realWidth = this.tagsBox.scrollWidth //可见宽度
-      // const isMove =
-      //   this.leftValue + this.offset + viewWidth < realWidth ? true : false
-      // if (isMove) {
-      //   this.leftValue += this.offset
-      // } else {
-      //   const finalOffset = realWidth - this.leftValue - viewWidth
-      //   this.leftValue += finalOffset + 16
-      //   this.leftDisabled = true
-      // }
+    },
+  },
+  watch: {
+    viewWidth(newVal, oldVal) {
+      if (oldVal) {
+        if (newVal > oldVal) {
+          const realWidth = this.tagsBox.scrollWidth
+          const overValue = this.leftValue + newVal - realWidth - 16
+          console.log(overValue)
+          if (overValue > 0) {
+            this.leftValue -= overValue
+          }
+        }
+      }
     },
   },
 }
@@ -176,11 +184,7 @@ export default {
     height: 100%;
     white-space: nowrap;
     position: absolute;
-    // display: flex;
-    // align-items: center;
-    // overflow: hidden;
-
-    // line-height: 40px;
+    transition: left 0.2s;
     .tag-item {
       // padding: 2px 3px;
       background: #f0f0f0;

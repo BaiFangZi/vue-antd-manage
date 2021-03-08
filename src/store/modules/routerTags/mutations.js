@@ -3,7 +3,7 @@ const excludeTags = ['/dashboard', '/login', '/']
 
 export default {
   SET_ROUTER_TAGS(state, route) {
-    console.log(route)
+    // console.log(route)
     const { fullPath, path, meta } = route
     if (!excludeTags.includes(path)) {
       if (state.keepLiveTags.some((i) => i.fullPath === route.fullPath))

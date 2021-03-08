@@ -2,9 +2,9 @@
   <div>
     <a-menu
       @select="handleSelect"
-      :default-selected-keys="[$route.path]"
       mode="inline"
       theme="dark"
+      v-model="selectKey"
     >
       <template v-for="item in menus">
         <a-menu-item v-if="!item.children && !item.isHidden" :key="item.path">
@@ -63,9 +63,19 @@ export default {
   data() {
     return {
       menus: [],
+      selectKey: [],
     }
   },
-  computed: {},
+  watch: {
+    '$route.path': {
+      // console.log(this.$route)
+      handler() {
+        console.log(this.$route.path.split())
+        this.selectKey = this.$route.path.split()
+      },
+      immediate: true,
+    },
+  },
   created() {
     this.menus = formatMenu(this.$store.state.console.menuList)
     // console.log(this.menus)
