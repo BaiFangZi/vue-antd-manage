@@ -32,11 +32,10 @@
         </div>
       </a-layout-header>
       <a-layout-content>
-     
-         <router-tags></router-tags>
+        <router-tags></router-tags>
         <div class="main">
           <!-- 缓存路由组件 -->
-          <keep-alive>
+          <keep-alive :include="includeRouter">
             <router-view></router-view>
           </keep-alive>
         </div>
@@ -48,7 +47,7 @@
 import SideBar from './components/sideBar'
 import RouterTags from './components/routerTags'
 import BreadCrumb from './components/breadcrumb'
-import { mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'layout',
   components: {
@@ -60,7 +59,20 @@ export default {
     return {
       collapsed: false,
       isLogin: '',
+      includeRouter: [],
     }
+  },
+  computed: {
+    ...mapGetters('routerTags', {
+      keepLiveTags: 'getKeepLiveTags',
+    }),
+  },
+  watch: {
+    keepLiveTags() {
+      // console.log(23232)
+      this.includeRouter = this.keepLiveTags.map((r) => r.path)
+      console.log(this.includeRouter)
+    },
   },
   methods: {
     ...mapMutations('app', {
@@ -116,7 +128,7 @@ export default {
       // }
     }
   }
-  
+
   .main {
     margin: 24px 16px;
     padding: 24px;
