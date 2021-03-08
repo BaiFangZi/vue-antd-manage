@@ -31,6 +31,7 @@
         :disabled="leftDisabled"
         icon="left"
         @click="handleLeftOffset"
+        style="border-right:1px solid #ccc"
       ></a-button>
       <a-button
         :disabled="rightDisabled"
@@ -51,9 +52,10 @@ export default {
       tagsBox: null,
       offset: 200,
       leftValue: 0,
-      viewWidth: 0,
-      leftDisabled: false,
-      rightDisabled: false,
+      viewWidth: 0, //可见宽度
+      realWidth: 0, //实际宽度
+      leftDisabled: true,
+      rightDisabled: true,
     }
   },
   computed: {
@@ -63,9 +65,16 @@ export default {
   },
   mounted() {
     this.tagsBox = document.querySelector('.tags-box')
-    this.viewWidth = this.tagsBox.parentNode.offsetWidth
+    const tagsView = document.querySelector('.tags-view')
+    setTimeout(() => {
+      this.realWidth = this.tagsBox.clientWidth
+      this.viewWidth = tagsView.clientWidth
+    }, 1)
+    // if (this.viewWidth >= this.realWidth) {
+    //   this.leftDisabled = this.rightDisabled = true
+    // }
     window.addEventListener('resize', () => {
-      this.viewWidth = this.tagsBox.parentNode.offsetWidth //可见宽度
+      this.viewWidth = tagsView.clientWidth //可见宽度/
     })
   },
   methods: {
@@ -82,9 +91,10 @@ export default {
       this.$router.push({ path })
     },
     handleCloseRoute(tag) {
-      // console.log(tag)
+      // console.log(overValue)
       const originTags = [...this.keepLiveTags]
       this.deleteRouteTags(tag)
+
       if (!this.isActiveTag(tag)) return false //是activetTag跳转到前一个路由
       const prevTagsIndex = findIndex(originTags, tag)
 
@@ -121,7 +131,6 @@ export default {
     },
     handleRightOffset() {
       this.leftDisabled = false
-      console.log(this.leftValue, this.offset)
       if (this.leftValue >= this.offset) {
         this.leftValue -= this.offset
       } else {
@@ -135,14 +144,37 @@ export default {
     viewWidth(newVal, oldVal) {
       if (oldVal) {
         if (newVal > oldVal) {
-          const realWidth = this.tagsBox.scrollWidth
-          const overValue = this.leftValue + newVal - realWidth - 16
-          console.log(overValue)
-          if (overValue > 0) {
-            this.leftValue -= overValue
+          //放大页面
+          if (this.viewWidth < this.realWidth) {
+            // const realWidth = this.tagsBox.scrollWidth
+            // const overValue = this.leftValue + newVal - realWidth - 16
+            // const realWidth = this.tagsBox.scrollWidth
+            const overValue = this.leftValue + newVal - this.realWidth - 16
+            if (overValue > 0) {
+              this.leftValue -= overValue
+            }
+          } else {
+            this.leftValue = 0
           }
+        } else {
+          //缩小页面
+          // console.log(this.leftValue + this.viewWidth)
+          this.leftDisabled = this.leftValue + this.viewWidth > this.realWidth
         }
       }
+    },
+    keepLiveTags() {
+      this.$nextTick(() => {
+        this.realWidth = this.tagsBox.clientWidth
+        console.log(this.realWidth, this.viewWidth)
+        this.leftDisabled = this.realWidth <= this.viewWidth
+        if (this.realWidth > this.viewWidth) {
+          const overValue = this.realWidth - this.viewWidth + 16
+          this.leftValue = overValue
+        } else {
+          this.leftValue = 0
+        }
+      })
     },
   },
 }

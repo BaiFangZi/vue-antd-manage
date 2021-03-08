@@ -70,7 +70,6 @@ export default {
     '$route.path': {
       // console.log(this.$route)
       handler() {
-        console.log(this.$route.path.split())
         this.selectKey = this.$route.path.split()
       },
       immediate: true,
