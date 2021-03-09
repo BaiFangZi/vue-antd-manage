@@ -1,4 +1,6 @@
-import state from './state'
+// import { $i18n } from 'vue'
+import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
+
 export default {
   SET_TOKEN(state, token) {
     state.token = token
@@ -12,6 +14,9 @@ export default {
     }
   },
   SET_LANG(state, lang) {
+    // console.log(lang)
+    const antdLang = lang === 'zh' ? zh_CN : null
+    state.antdLang = antdLang
     state.lang = lang
     localStorage.setItem('lang', lang)
   },

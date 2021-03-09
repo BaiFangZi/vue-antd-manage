@@ -1,19 +1,24 @@
 <template>
-  <!-- <a-config-provider :locale="local"> -->
-  <div id="root">
-    <router-view></router-view>
-  </div>
-  <!-- </a-config-provider> -->
+  <a-config-provider :locale="antdLang">
+    <div id="root">
+      <router-view></router-view>
+    </div>
+  </a-config-provider>
 </template>
 
 <script>
-// import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN';
+import { mapGetters } from 'vuex'
 export default {
   name: 'App',
   data() {
     return {
-      // local: zh_CN
+      locale: zh_CN,
     }
+  },
+  computed: {
+    ...mapGetters('app', {
+      antdLang: 'getAntdLang',
+    }),
   },
 }
 </script>

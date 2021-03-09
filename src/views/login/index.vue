@@ -73,8 +73,8 @@ export default {
     }
     return {
       ruleForm: {
-        user: '',
-        password: '',
+        user: 'admin',
+        password: '123456',
         // age: "",
       },
       rules: {

@@ -8,7 +8,7 @@ Vue.use(VueI18n)
 
 // 国际化
 const i18n = new VueI18n({
-  locale: 'zh', // set locale
+  locale: localStorage.getItem('lang') || 'zh', // set locale
   messages: {
     zh,
     en,

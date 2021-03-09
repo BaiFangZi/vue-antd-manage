@@ -28,7 +28,7 @@ import * as Echarts from 'echarts' //echarts5.0
 Vue.prototype.$echarts = Echarts
 
 import i18n from './lang'
-localStorage.setItem('lang', 'zh')
+// localStorage.setItem('lang', 'zh')
 
 //路由权限
 const whiteRoutes = ['/login'] //路由白名单

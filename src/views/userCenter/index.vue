@@ -12,6 +12,7 @@ import import { mapMutations from 'vuex'; import { mapGetters } from 'vuex';
     </a-radio-group>
 
     <a-divider></a-divider>
+    <a-pagination :default-current="1" :total="50" show-size-changer />
   </div>
 </template>
 <script>
