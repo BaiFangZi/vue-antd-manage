@@ -26,7 +26,7 @@ export default {
   },
   system: {
     signOut: '退出登陆',
-    signIn: 'Sign Out',
+    signIn: '登陆',
     account: '个人用户',
     user: '用户',
     password: '密码',

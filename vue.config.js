@@ -32,7 +32,7 @@ module.exports = {
 
   runtimeCompiler: false,
   // 公共路径(必须有的)
-  publicPath: '/',
+  publicPath: '/vue-antd-manage/', //使用时换为自己的路经 提供参考：https://cli.vuejs.org/zh/config/#publicpath
   // 输出文件目录
   outputDir: 'dist',
   // 静态资源存放的文件夹(相对于ouputDir)
@@ -49,7 +49,7 @@ module.exports = {
     port: 8088, // 开发服务器运行端口号
     proxy: {
       '/v1': {
-        target: 'http://192.168.1.19:8193/zrins/',
+        target: 'http://192.168.1.19:8193/api/',
         changeOrigin: true,
         pathRewrite: {
           '^/v1': '/v1',
