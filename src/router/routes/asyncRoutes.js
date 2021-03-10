@@ -7,7 +7,7 @@ export default [
       title: 'dashboard',
       icon: '',
       auth: ['admin', 'normal'],
-      // isHidden: true,
+      // noHidden: true,
     },
   },
   {
@@ -18,7 +18,7 @@ export default [
       title: 'userCenter',
       icon: '',
       auth: ['admin', 'normal'],
-      isHidden: true,
+      noHidden: true,
     },
   },
   {
@@ -29,7 +29,7 @@ export default [
       title: 'table',
       icon: '',
       auth: ['admin', 'normal'],
-      // isHidden: true,
+      // noHidden: true,
     },
   },
   // {
@@ -40,7 +40,7 @@ export default [
   //     title: '对话框',
   //     icon: '',
   //     auth: ['admin', 'normal'],
-  //     // isHidden: true,
+  //     // noHidden: true,
   //   },
   // },
   // //
@@ -52,7 +52,7 @@ export default [
   //     title: '抽屉',
   //     icon: '',
   //     auth: ['admin', 'normal'],
-  //     // isHidden: true,
+  //     // noHidden: true,
   //   },
   // },
   //无限菜单
@@ -64,7 +64,7 @@ export default [
       title: 'infinitePage',
       icon: '',
       auth: ['admin', 'normal'],
-      // isHidden: true,
+      // noHidden: true,
       noBreadcrumbLink: true, //面包屑导航，显示为普通文本
     },
     children: [
@@ -76,7 +76,7 @@ export default [
           title: 'page1',
           icon: '',
           auth: ['admin', 'normal'],
-          // isHidden: false,
+          // noHidden: false,
         },
       },
       {
@@ -87,7 +87,7 @@ export default [
           title: 'page2',
           icon: '',
           auth: ['admin', 'normal'],
-          // isHidden: false,
+          // noHidden: false,
           noBreadcrumbLink: true,
         },
         children: [
@@ -99,7 +99,7 @@ export default [
               title: 'page2_1',
               icon: '',
               auth: ['admin', 'normal'],
-              // isHidden: false,
+              // noHidden: false,
             },
           },
           {
@@ -110,7 +110,7 @@ export default [
               title: 'page2_2',
               icon: '',
               auth: ['admin', 'normal'],
-              // isHidden: false,
+              // noHidden: false,
             },
           },
         ],
@@ -123,7 +123,7 @@ export default [
           title: 'page3',
           icon: '',
           auth: ['admin', 'normal'],
-          // isHidden: false,
+          // noHidden: false,
         },
         children: [
           {
@@ -134,7 +134,7 @@ export default [
               title: 'page3_1',
               icon: '',
               auth: ['admin', 'normal'],
-              // isHidden: false,
+              // noHidden: false,
               noBreadcrumbLink: true,
             },
           },
@@ -146,7 +146,7 @@ export default [
               title: 'page3_2',
               icon: '',
               auth: ['admin', 'normal'],
-              // isHidden: false,
+              // noHidden: false,
             },
             children: [
               {
@@ -158,7 +158,7 @@ export default [
                   title: 'page3_2_1',
                   icon: '',
                   auth: ['admin', 'normal'],
-                  // isHidden: false,
+                  // noHidden: false,
                   noBreadcrumbLink: true,
                 },
               },

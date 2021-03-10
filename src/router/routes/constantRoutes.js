@@ -7,7 +7,7 @@ export default [
       title: 'layout',
       icon: '',
       auth: ['admin', 'normal'],
-      // isHidden: true,
+      // noHidden: true,
     },
     redirect: '/dashboard',
     children: [],
@@ -20,7 +20,7 @@ export default [
       title: 'notFound',
       icon: '',
       auth: ['admin', 'normal'],
-      // isHidden: true,
+      // noHidden: true,
     },
   },
 

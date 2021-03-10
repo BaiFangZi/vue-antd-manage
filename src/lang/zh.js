@@ -1,6 +1,6 @@
 export default {
   dashboard: {
-    test: '测试',
+    content: '首页',
   },
   routes: {
     dashboard: '主页',

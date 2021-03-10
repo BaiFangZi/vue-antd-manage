@@ -7,13 +7,13 @@
       v-model="selectKey"
     >
       <template v-for="item in menus">
-        <a-menu-item v-if="!item.children && !item.isHidden" :key="item.path">
+        <a-menu-item v-if="!item.children && !item.noHidden" :key="item.path">
           <a-icon type="pie-chart" />
           <span>{{ $t(`routes.${item.title}`) }}</span>
           <span></span>
         </a-menu-item>
         <sub-menu
-          v-if="item.children && !item.isHidden"
+          v-if="item.children && !item.noHidden"
           :key="item.path"
           :menu-info="item"
         />
@@ -35,11 +35,11 @@ const SubMenu = {
             <a-icon type="mail" /><span>{{ $t('routes.'+menuInfo.title) }}</span>
           </span>
           <template v-for="item in menuInfo.children">
-            <a-menu-item v-if="!item.children&&!item.isHidden" :key="item.path">
+            <a-menu-item v-if="!item.children&&!item.noHidden" :key="item.path">
               <a-icon type="pie-chart" />
               <span>{{$t('routes.'+item.title)}}</span>
             </a-menu-item>
-            <sub-menu  v-if="item.children && !item.isHidden" :key="item.path" :menu-info="item" />
+            <sub-menu  v-if="item.children && !item.noHidden" :key="item.path" :menu-info="item" />
           </template>
         </a-sub-menu>
       `,

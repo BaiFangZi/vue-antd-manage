@@ -1,6 +1,6 @@
 export default {
   dashboard: {
-    test: 'Test',
+    content: 'Content',
   },
   routes: {
     dashboard: 'Dashboard',

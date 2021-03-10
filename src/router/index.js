@@ -20,7 +20,7 @@ export default new Router({
         title: '登陆',
         icon: '',
         auth: ['admin', 'normal'],
-        // isHidden: true,
+        // noHidden: true,
       },
     },
   ],

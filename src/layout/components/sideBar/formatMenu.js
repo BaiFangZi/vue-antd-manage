@@ -8,16 +8,12 @@ export function formatMenu(data) {
       icon: item.meta.icon,
       title: item.meta.title,
       path: item.path,
-      isHidden: item.meta.isHidden || false,
+      noHidden: item.meta.noHidden || false,
     }
     if (item.children && item.children.length) {
-      result.push({
-        ...obj,
-        children: formatMenu(item.children),
-      })
-    } else {
-      result.push(obj)
+      obj.children = formatMenu(item.children)
     }
+    result.push(obj)
   })
   return result
 }
