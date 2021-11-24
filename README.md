@@ -2,6 +2,10 @@
 
 预览地址: http://baifangzi.gitee.io/vue-antd-manage/
 
+Vue3 版本功能更多更全：https://github.com/BaiFangZi/vue3-antd-manage
+
+Vue3 版本预览： https://baifangzi.gitee.io/vue3-antd-manage/#/login
+
 ![image-20210309194408777](https://gitee.com/baifangzi/blogimage/raw/master/img/20210309194410.png)
 
 ## 目录结构
